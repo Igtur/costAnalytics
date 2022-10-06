@@ -15,4 +15,13 @@ li {
   cursor: pointer;
 }
 
+.header {
+  display: flex;
+}
+
+.logoimage {
+  width: 70px;
+  height: 70px;
+}
+
 /*# sourceMappingURL=headmenu.css.map */

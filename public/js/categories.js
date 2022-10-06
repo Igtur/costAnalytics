@@ -9,9 +9,10 @@ fetch('http://localhost:3005/categoriesData')
     console.log(data);
     categories= data.categories
 
-    draw()
+    drawCategories()
 })
 
+// метод для расшаривания паг файла
 // fetch('http://localhost:3005/cData')
 // .then(data=>data.text())
 // .then(data=>{
@@ -21,28 +22,28 @@ fetch('http://localhost:3005/categoriesData')
 // })
 
 
-const wraperPage = document.querySelector('.wraperPage');
+const categoriesWraper = document.querySelector('.categoriesWraper');
 // wraperPage.innerHTML =  '';
 
-function draw(){
+function drawCategories(){
 for (let i = 0; i < categories.length; i++) {
 
 const category = document.createElement('div');
-category.classList.add('category');
+category.classList.add('category', 'rounded', 'border');
 // category.style.bacground-color = categories[i].color;
 
 const nameCategory = document.createElement('p');
 nameCategory.innerHTML = categories[i].name;
 category.append(nameCategory)
 
-wraperPage.append(category)
+categoriesWraper.append(category)
 
 document.getElementsByClassName('category')[i].style.bacgroundColor = "red"
 }
-const btnAddCategory = document.createElement('button')
-btnAddCategory.classList.add('btn', 'btn-primary');
-btnAddCategory.innerHTML = 'Add category';
-wraperPage.append(btnAddCategory)
+// const btnAddCategory = document.createElement('button')
+// btnAddCategory.classList.add('btn', 'btn-primary');
+// btnAddCategory.innerHTML = 'Add category';
+// wraperPage.append(btnAddCategory)
 }
 
 // let a = document.getElementsByClassName('category');

@@ -11,6 +11,24 @@ head
 include  ../includes/menu
 h1= title
 
-.wraperPage 
+.pageWraper.border.border-4
+  .categoriesWraper.border-bottom.border-4
+  //- button.btn.btn-primary Add category
+  button.btn.btn-primary(type='button', data-bs-toggle='modal', data-bs-target='#exampleModal') Add category
+
+  //модальное окно добавления категории
+  #exampleModal.modal.fade(tabindex='-1', aria-labelledby='exampleModalLabel', aria-hidden='true')
+      .modal-dialog
+        .modal-content
+          .modal-header
+            h5#exampleModalLabel.modal-title Modal title
+            button.btn-close(type='button', data-bs-dismiss='modal', aria-label='Close')
+          .modal-body
+            | ...
+          .modal-footer
+            button.btn.btn-secondary(type='button', data-bs-dismiss='modal') Close
+            button.btn.btn-primary(type='button') Save changes
+
+
 
 script(src="js/categories.js") 
