@@ -1,0 +1,18 @@
+h1 {
+  color: red;
+}
+
+ul {
+  display: flex;
+}
+
+li {
+  margin: 10px 10px 10px 10px;
+  list-style-type: none;
+}
+
+.nav-items {
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=headmenu.css.map */
