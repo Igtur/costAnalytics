@@ -1,3 +1,4 @@
+"use strict";
 
 let categories = [
     
@@ -47,4 +48,20 @@ document.getElementsByClassName('category')[i].style.bacgroundColor = "red"
 }
 
 // let a = document.getElementsByClassName('category');
+
+document.forms['createCategory'].addEventListener('submit', (event) => {
+    event.preventDefault();
+    
+
+    const dataFromcreateCategoryForm = new FormData(document.forms.createCategory);
+    console.log(dataFromcreateCategoryForm)
+
+    fetch('http://localhost:3005/createNewCategory', {method:"post", body: dataFromcreateCategoryForm})
+    .then(data=>data.json())
+    .then(data =>{
+        console.log(data)
+    })
+
+
+})
 

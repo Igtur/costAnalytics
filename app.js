@@ -2,9 +2,13 @@ const express = require('express')
 const app = express()
 const port = 3005
 
+const multer  = require('multer')
+const upload = multer({ dest: 'uploads/' })
+
 app.use(express.static('public'));
 app.use(express.static('files'))
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 
 const { MongoClient, ObjectId } = require("mongodb");
@@ -68,12 +72,18 @@ app.get('/categoriesData', async (req, res) => {
   
 })
 
-app.get('/cData', async (req, res) => {
-  let temp = db.collection('categories');
-  categories = await temp.find().toArray();
-  res.render('cData', {arr:categories})
-
-})
+// app.get('/cData', async (req, res) => {
+  //   let temp = db.collection('categories');
+  //   categories = await temp.find().toArray();
+  //   res.render('cData', {arr:categories})
+  
+  
+  app.post('/createNewCategory', upload.none(), (req, res) => {
+    // const dataFromcreateCategoryForm = req.body
+    console.log(req.body);
+ res.json({m:"ok"})
+  })
+// })
 
 
 

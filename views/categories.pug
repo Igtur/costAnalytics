@@ -21,13 +21,27 @@ h1= title
       .modal-dialog
         .modal-content
           .modal-header
-            h5#exampleModalLabel.modal-title Modal title
+            h5#exampleModalLabel.modal-title Create category
             button.btn-close(type='button', data-bs-dismiss='modal', aria-label='Close')
           .modal-body
-            | ...
-          .modal-footer
-            button.btn.btn-secondary(type='button', data-bs-dismiss='modal') Close
-            button.btn.btn-primary(type='button') Save changes
+            
+              form(action= "http://localhost:3005/createNewCategory", name= "createCategory", method= "post")
+                .mb-3
+                  label.form-label(for= 'nameCategory') Name the category
+                  input#nameCategory.form-control(name= 'nameCategory', value='', type= 'text', aria-describedby= 'nameCategorylHelp')
+                  #nameCategorylHelp.form-text Enter the title
+                .mb-3
+                  label.form-label(for='colorCategory') Category color
+                  input#colorCategory.form-control(name='colorCategory',  value='#000000',  type='color', aria-describedby='colorCategoryHelp')
+                  #colorCategoryHelp.form-text Choose a color
+                .mb-3.form-check
+                  input#enabledOnMain.form-check-input(name='enabledOnMain', checked, type='checkbox')
+                  label.form-check-label(for='enabledOnMain') Display on homepage
+                button.btn.btn-primary(type='submit') Save category
+
+          //- .modal-footer
+          //-   button.btn.btn-secondary(type='button', data-bs-dismiss='modal') Close
+          //-   button.btn.btn-primary(type='button') Save changes
 
 
 
