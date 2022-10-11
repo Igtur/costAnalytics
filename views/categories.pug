@@ -14,25 +14,26 @@ h1= title
 .pageWraper.border.border-4.container-fluid.row-cols-auto
   .categoriesWraper.border-bottom.border-4.row.row-cols-auto.container-fluid
   //- button.btn.btn-primary Add category
-  button.btn.btn-primary(type='button', data-bs-toggle='modal', data-bs-target='#exampleModal') Add category
+  button.btn.btn-primary.m-2(type='button', data-bs-toggle='modal', data-bs-target='#createCategoryModal') Add category
 
   //модальное окно добавления категории
-  #exampleModal.modal.fade(tabindex='-1', aria-labelledby='exampleModalLabel', aria-hidden='true')
+  #createCategoryModal.modal.fade(tabindex='-1', aria-labelledby='createCategoryModalLabel', aria-hidden='true')
       .modal-dialog
         .modal-content
           .modal-header
-            h5#exampleModalLabel.modal-title Create category
+            h5#createCategoryModalLabel.modal-title Create category
             button.btn-close(type='button', data-bs-dismiss='modal', aria-label='Close')
           .modal-body
             
-              form(action= "http://localhost:3005/createNewCategory", name= "createCategory", method= "post")
+              //- form(action= "http://localhost:3005/createNewCategory", name= "createCategory", method= "post")
+              form(name= "createCategory")
                 .mb-3
                   label.form-label(for= 'nameCategory') Name the category
-                  input#nameCategory.form-control(name= 'nameCategory', value='', type= 'text', aria-describedby= 'nameCategorylHelp')
+                  input#nameCategory.form-control.w-75(name= 'nameCategory', value='', type= 'text', aria-describedby= 'nameCategorylHelp')
                   #nameCategorylHelp.form-text Enter the title
                 .mb-3
                   label.form-label(for='colorCategory') Category color
-                  input#colorCategory.form-control(name='colorCategory',  value='#000000',  type='color', aria-describedby='colorCategoryHelp')
+                  input#colorCategory.form-control.form-control.form-control-color(name='colorCategory',  value='#FFF705',  type='color', aria-describedby='colorCategoryHelp')
                   #colorCategoryHelp.form-text Choose a color
                 .mb-3.form-check
                   input#enabledOnMain.form-check-input(name='enabledOnMain', checked, type='checkbox')
@@ -42,6 +43,32 @@ h1= title
           //- .modal-footer
           //-   button.btn.btn-secondary(type='button', data-bs-dismiss='modal') Close
           //-   button.btn.btn-primary(type='button') Save changes
+
+
+  //модальное окно редактирования категории
+  #updateCategoryModal.modal.fade(tabindex='-1', aria-labelledby='updateCategoryModalLabel', aria-hidden='true')
+      .modal-dialog
+        .modal-content
+          .modal-header
+            h5#updateCategoryModalLabel.modal-title Update category
+            button.btn-close(type='button', data-bs-dismiss='modal', aria-label='Close')
+          .modal-body
+            
+              form(name= "updateCategory")
+                .mb-3
+                  label.form-label(for= 'updateCategory') Name the category
+                  input#updateCategory.form-control.w-75(name= 'nameCategory', value='', type= 'text', aria-describedby= 'updateCategorylHelp')
+                  #updateCategorylHelp.form-text Update the title
+                .mb-3
+                  label.form-label(for='updateColorCategory') Category color
+                  input#updateColorCategory.form-control.form-control.form-control-color(name='colorCategory',  value='#FFF705',  type='color', aria-describedby='updateColorCategoryHelp')
+                  #updateColorCategoryHelp.form-text Update a color
+                .mb-3.form-check
+                  input#updateEnabledOnMain.form-check-input(name='enabledOnMain', checked, type='checkbox')
+                  label.form-check-label(for='updateEnabledOnMain') Display on homepage
+                button.btn.btn-primary(type='submit', data-bs-dismiss='modal', aria-label='Close') Save category
+                //- button.btn.btn-primary.btn-danger(type='button') Delete category
+  
 
 
 

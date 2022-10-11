@@ -99,8 +99,25 @@ app.delete('/deleteCategory/:id', async (req, res) => {
 
   let obj = await deleteCategory.deleteOne({ _id: ObjectId(req.params.id) });
   res.json({ m: "ok" })
+});
+
+
+
+app.put('/updateCategory/:id', async (req, res) => {
+
+  // const dataFromcreateCategoryForm = req.body;
+
+ console.log(req.body);
+  // console.log({ ...req.body });
+
+  const updateCategory = db.collection('categories');
+  // try {
+  // } catch (error) { console.error(error); }
+
+  // const obj = await updateCategory.updateOne({ _id: ObjectId(req.params.id) });
+  res.json({ m: "ok" })
 })
-// })
+
 
 
 
