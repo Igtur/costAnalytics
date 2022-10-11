@@ -11,8 +11,8 @@ head
 include  ../includes/menu
 h1= title
 
-.pageWraper.border.border-4
-  .categoriesWraper.border-bottom.border-4
+.pageWraper.border.border-4.container-fluid.row-cols-auto
+  .categoriesWraper.border-bottom.border-4.row.row-cols-auto.container-fluid
   //- button.btn.btn-primary Add category
   button.btn.btn-primary(type='button', data-bs-toggle='modal', data-bs-target='#exampleModal') Add category
 
@@ -37,7 +37,7 @@ h1= title
                 .mb-3.form-check
                   input#enabledOnMain.form-check-input(name='enabledOnMain', checked, type='checkbox')
                   label.form-check-label(for='enabledOnMain') Display on homepage
-                button.btn.btn-primary(type='submit') Save category
+                button.btn.btn-primary(type='submit', data-bs-dismiss='modal', aria-label='Close') Save category
 
           //- .modal-footer
           //-   button.btn.btn-secondary(type='button', data-bs-dismiss='modal') Close

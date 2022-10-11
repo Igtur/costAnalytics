@@ -1,21 +1,9 @@
 .pageWraper {
-  border: 2px solid black;
-  height: 500px;
-  width: auto;
-}
-
-.categoriesWraper {
-  display: flex;
-  width: auto;
+  height: 82vh;
 }
 
 .category {
-  height: 30px;
   margin: 10px;
-}
-
-p {
-  margin: 2px;
 }
 
 /*# sourceMappingURL=categories.css.map */

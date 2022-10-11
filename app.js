@@ -1,8 +1,10 @@
+"use strict"
+
 const express = require('express')
 const app = express()
 const port = 3005
 
-const multer  = require('multer')
+const multer = require('multer')
 const upload = multer({ dest: 'uploads/' })
 
 app.use(express.static('public'));
@@ -16,7 +18,7 @@ const url = "mongodb://localhost:27017";
 const client = new MongoClient(url);
 const dbName = "myappdb"
 client.connect();
-db = client.db(dbName);
+const db = client.db(dbName);
 
 
 
@@ -56,33 +58,48 @@ app.get('/categories', (req, res) => {
 })
 
 app.get('/main', (req, res) => {
-  res.render('main', { title: "Главная" , menu: mainMenu})
+  res.render('main', { title: "Главная", menu: mainMenu })
 })
 
 app.get('/monthly', (req, res) => {
-  res.render('monthly', { title: "По месяцам" , menu: mainMenu})
+  res.render('monthly', { title: "По месяцам", menu: mainMenu })
 })
 
 
 
 app.get('/categoriesData', async (req, res) => {
   let temp = db.collection('categories');
-  categories = await temp.find().toArray();
-  res.json({categories })
-  
+  let categories = await temp.find().toArray();
+  res.json({ categories })
+
 })
 
 // app.get('/cData', async (req, res) => {
-  //   let temp = db.collection('categories');
-  //   categories = await temp.find().toArray();
-  //   res.render('cData', {arr:categories})
-  
-  
-  app.post('/createNewCategory', upload.none(), (req, res) => {
-    // const dataFromcreateCategoryForm = req.body
-    console.log(req.body);
- res.json({m:"ok"})
-  })
+//   let temp = db.collection('categories');
+//   categories = await temp.find().toArray();
+//   res.render('cData', {arr:categories})
+
+
+app.post('/createNewCategory', upload.none(), async (req, res) => {
+  // const dataFromcreateCategoryForm = req.body;
+  let createCategory = db.collection('categories');
+  let obj = await createCategory.insertOne({ ...req.body });
+  console.log({ ...req.body });
+  res.json({ m: "ok" })
+
+})
+
+app.delete('/deleteCategory/:id', async (req, res) => {
+
+  // const dataFromcreateCategoryForm = req.body;
+
+  let deleteCategory = db.collection('categories');
+  // try {
+  // } catch (error) { console.error(error); }
+
+  let obj = await deleteCategory.deleteOne({ _id: ObjectId(req.params.id) });
+  res.json({ m: "ok" })
+})
 // })
 
 
