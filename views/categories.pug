@@ -51,7 +51,6 @@ h1= title
         .modal-content
           .modal-header
             h5#updateCategoryModalLabel.modal-title Update category
-            button.btn-close(type='button', data-bs-dismiss='modal', aria-label='Close')
           .modal-body
             
               form(name= "updateCategory")
@@ -66,8 +65,8 @@ h1= title
                 .mb-3.form-check
                   input#updateEnabledOnMain.form-check-input(name='enabledOnMain', checked, type='checkbox')
                   label.form-check-label(for='updateEnabledOnMain') Display on homepage
-                button.btn.btn-primary(type='submit', data-bs-dismiss='modal', aria-label='Close') Save category
-                //- button.btn.btn-primary.btn-danger(type='button') Delete category
+                button.btn.btn-primary.me-5(type='submit', data-bs-dismiss='modal', aria-label='Close') Save category
+                button.btn.btn-primary.btn-danger(type='button', data-bs-dismiss='modal', id='#deleteCategory', aria-label='Close') Delete category
   
 
 

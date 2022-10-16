@@ -71,7 +71,6 @@ app.get('/categoriesData', async (req, res) => {
   let temp = db.collection('categories');
   let categories = await temp.find().toArray();
   res.json({ categories })
-
 })
 
 // app.get('/cData', async (req, res) => {
@@ -83,9 +82,16 @@ app.get('/categoriesData', async (req, res) => {
 app.post('/createNewCategory', upload.none(), async (req, res) => {
   // const dataFromcreateCategoryForm = req.body;
   let createCategory = db.collection('categories');
+  let fff = { ...req.body }
+  console.log(fff)
+
+  if (fff.enabledOnMain === 'on') {
+    console.log('34')
+  }
+
   let obj = await createCategory.insertOne({ ...req.body });
-  console.log({ ...req.body });
-  res.json({ m: "ok" })
+  res.json({ m: "okCreate" })
+  // console.log({ ...req.body });
 
 })
 
@@ -98,24 +104,22 @@ app.delete('/deleteCategory/:id', async (req, res) => {
   // } catch (error) { console.error(error); }
 
   let obj = await deleteCategory.deleteOne({ _id: ObjectId(req.params.id) });
-  res.json({ m: "ok" })
+  res.json({ m: "okDelete" })
 });
 
 
 
-app.put('/updateCategory/:id', async (req, res) => {
+app.put('/updateCategory/:id', upload.none(), async (req, res) => {
 
-  // const dataFromcreateCategoryForm = req.body;
-
- console.log(req.body);
-  // console.log({ ...req.body });
+  console.log(req.body);
+  // console.log({...req.body });
+  // console.log(req.params.id);
 
   const updateCategory = db.collection('categories');
-  // try {
-  // } catch (error) { console.error(error); }
 
-  // const obj = await updateCategory.updateOne({ _id: ObjectId(req.params.id) });
-  res.json({ m: "ok" })
+  let obj = await updateCategory.updateOne({ _id: ObjectId(req.params.id) }, { $set: { ...req.body } });
+
+  res.json({ m: "okUpdate" })
 })
 
 
