@@ -80,18 +80,18 @@ app.get('/categoriesData', async (req, res) => {
 
 
 app.post('/createNewCategory', upload.none(), async (req, res) => {
-  // const dataFromcreateCategoryForm = req.body;
-  let createCategory = db.collection('categories');
-  let fff = { ...req.body }
-  console.log(fff)
 
-  if (fff.enabledOnMain === 'on') {
-    console.log('34')
+  let createCategory = db.collection('categories');
+  let createDataFromForm = { ...req.body }
+
+  if (createDataFromForm.enabledOnMain === 'on') {
+    createDataFromForm.enabledOnMain = true;
+  } else {
+    createDataFromForm.enabledOnMain = false;
   }
 
-  let obj = await createCategory.insertOne({ ...req.body });
+  await createCategory.insertOne(createDataFromForm);
   res.json({ m: "okCreate" })
-  // console.log({ ...req.body });
 
 })
 
@@ -111,13 +111,17 @@ app.delete('/deleteCategory/:id', async (req, res) => {
 
 app.put('/updateCategory/:id', upload.none(), async (req, res) => {
 
-  console.log(req.body);
-  // console.log({...req.body });
-  // console.log(req.params.id);
-
   const updateCategory = db.collection('categories');
 
-  let obj = await updateCategory.updateOne({ _id: ObjectId(req.params.id) }, { $set: { ...req.body } });
+  let updateDataFromForm = { ...req.body };
+
+  if (updateDataFromForm.enabledOnMain === 'on') {
+    updateDataFromForm.enabledOnMain = true;
+  } else {
+    updateDataFromForm.enabledOnMain = false;
+  }
+
+  await updateCategory.updateOne({ _id: ObjectId(req.params.id) }, { $set: updateDataFromForm });
 
   res.json({ m: "okUpdate" })
 })
